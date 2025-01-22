@@ -1,0 +1,15 @@
+# Ignore files under the .creds directory
+infrastructure/.creds/*
+package-lock.json
+node_modules/
+infrastructure/configs/.deprecated/full-stack2/data-node0
+infrastructure/configs/.deprecated/full-stack2/data-node1
+infrastructure/configs/.deprecated/urh/data-node0
+infrastructure/configs/.deprecated/urh/data-node1
+infrastructure/configs/fullstack/data-node0
+infrastructure/configs/fullstack/data-node1
+infrastructure/configs/fullstack/loki
+envs
+infrastructure/static-resources/
+*/.env.test
+services/tapestry-backend/client/old-envs

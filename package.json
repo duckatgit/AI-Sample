@@ -1,0 +1,31 @@
+{
+  "name": "tapestry-mono",
+  "version": "0.2.0",
+  "description": "Mono repo for the tapestry project",
+  "main": "index.js",
+  "scripts": {
+    "update:nodemodules": "npm install && cd services/tapestry-backend && npm install && cd client && yarn install",
+    "update:services": "bash ./infrastructure/scripts/pull-latest.sh",
+    "build:tapestry-frontend": "bash ./infrastructure/scripts/copy-test-env.sh && rm -rf services/tapestry-backend/public/*  && cd services/tapestry-backend/client && ./node_modules/.bin/tsc && npm run build:test &&  cp -r dist/* ../public/",
+    "build:tapestry-backend": "cd services/tapestry-backend && npm run build:prod",
+    "build:services": "bash ./infrastructure/scripts/build-services-new.sh",
+    "build-and-release": "npm run update:nodemodules && npm run build:tapestry-frontend && npm run build:tapestry-backend && npm run build:services",
+    "build:weaviate-proxy": "ts-node infrastructure/configs/fullstack/weaviate-upstream.ts",
+    "danger:init:swarm": "bash ./infrastructure/scripts/init-docker-swarm-manager.sh",
+    "danger:init:swarm-networks": "bash ./infrastructure/scripts/danger-install-docker-fullstack-networks.sh",
+    "danger:init:windows-swarm-networks": "bash ./infrastructure/scripts/danger-install-docker-windows-networks.sh",
+    "get:new-worker-join-token": "bash ./infrastructure/scripts/get-docker-swarm-worker-token.sh",
+    "get:new-manager-join-token": "bash ./infrastructure/scripts/get-docker-swarm-worker-token.sh",
+    "get:manager-listen-addr": "bash ./infrastructure/scripts/get-docker-swarm-manager-addr.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Kelsey",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

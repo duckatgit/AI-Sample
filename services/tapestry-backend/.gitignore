@@ -1,0 +1,7 @@
+node_modules
+config/config.js
+config/.env
+config/*
+.env
+public/*
+dist
